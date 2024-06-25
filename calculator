@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Функция для выполнения арифметической операции
+calculate() {
+    local operator=$1
+    local num1=$2
+    local num2=$3
+
+    case $operator in
+        +)
+            echo "Result: $(echo "$num1 + $num2" | bc)"
+            ;;
+        -)
+            echo "Result: $(echo "$num1 - $num2" | bc)"
+            ;;
+        \*)
+            echo "Result: $(echo "$num1 * $num2" | bc)"
+            ;;
+        /)
+            if [ "$num2" -eq 0 ]; then
+                echo "Error: Division by zero"
+            else
+                echo "Result: $(echo "scale=2; $num1 / $num2" | bc)"
+            fi
+            ;;
+        *)
+            echo "Invalid operator. Supported operators are: +, -, *, /"
+            ;;
+    esac
+}
+
+# Проверка на количество аргументов
+if [ $# -ne 3 ]; then
+    echo "Usage: $0 <operator> <num1> <num2>"
+    echo "Example: $0 + 3 5"
+    exit 1
+fi
+
+# Вызов функции calculate с аргументами
+calculate $1 $2 $3
