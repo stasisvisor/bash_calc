@@ -7,3 +7,6 @@
 ./calculator.sh / 15 3   #5.00
 
 ./calculator.sh / 10 0   #Error: Division by zero
+
+
+.
