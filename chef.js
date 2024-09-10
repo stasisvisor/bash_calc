@@ -1,0 +1,1 @@
+const curryN = (fn, arity = fn.length) => function curried(...args) { return args.length >= arity ? fn(...args) : (...moreArgs) => curried(...args, ...moreArgs); };
